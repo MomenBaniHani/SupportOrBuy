@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Products - Support or Buy</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/font-awesome.min.css" />
+  <link rel="stylesheet" href="css/ionicons.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .product-card {
+      position: relative;
+    }
+
+    .product-card .actions {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .product-card .actions button {
+      background: rgba(0, 0, 0, 0.6);
+      border: none;
+      color: white;
+      border-radius: 4px;
+      padding: 6px 10px;
+      cursor: pointer;
+    }
+
+    .product-card .actions button:hover {
+      background: rgba(0, 0, 0, 0.9);
+    }
+
+    .add-product {
+      text-align: center;
+      margin: 20px;
+    }
+
+    .add-product a {
+      padding: 10px 20px;
+      background-color: #111;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    .nav-container {
+      background-color: #fff;
+    }
+
+    .list-menu.reveal-modal {
+      background-color: rgba(0, 0, 0, 0.7) !important;
+      /* بدل الأسود الكامل */
+    }
+
+    #product-list .col-md-4 {
+      padding: 15px;
+    }
+
+    .portfolio-thumb {
+      height: 300px;
+      overflow: hidden;
+      position: relative;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .portfolio-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .nav-container {
+      background-color: #fff;
+    }
+
+    .list-menu.reveal-modal {
+      background-color: rgba(0, 0, 0, 0.7) !important;
+      /* بدل الأسود الكامل */
+    }
+
+    #editModal>div {
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <style>
+    :root {
+      --primary-color: #ffffff;
+      --secondary-color: #000000;
+      --gray: #777777;
+      --light-gray: #cccccc;
+      --dark-gray: #333333;
+    }
+
+    body,
+    html {
+      background-color: var(--primary-color) !important;
+      color: var(--secondary-color) !important;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    a,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    span,
+    div,
+    label {
+      color: var(--secondary-color) !important;
+    }
+
+    input,
+    textarea,
+    select,
+    button {
+      background-color: var(--light-gray) !important;
+      color: var(--secondary-color) !important;
+      border: 1px solid var(--gray) !important;
+    }
+
+    .btn,
+    .btn-primary,
+    .product-card .actions button,
+    .add-product a {
+      background: var(--secondary-color) !important;
+      color: var(--primary-color) !important;
+      padding: 10px 20px;
+      border: 2px solid transparent;
+      border-radius: 25px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    .btn:hover,
+    .btn-primary:hover,
+    .product-card .actions button:hover,
+    .add-product a:hover {
+      transform: translateY(-2px);
+      background: transparent !important;
+      color: var(--secondary-color) !important;
+      border: 2px solid var(--secondary-color);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .intro-inner ul#nav-menu li a {
+      color: white !important;
+      text-decoration: none;
+    }
+
+    .intro-inner ul#nav-menu li a:hover {
+      text-decoration: underline;
+      /* أو أي تأثير حاب */
+    }
+  </style>
+</head>
+
+
+<body>
+  <div class="nav-container">
+    <nav class="nav-inner transparent">
+      <div class="navbar">
+        <div class="container">
+          <div class="row">
+            <div class="brand">
+              <a href="homepage.html">Support or buy</a>
+            </div>
+
+            <div class="navicon">
+              <div class="menu-container">
+                <div class="circle dark inline">
+                  <i class="icon ion-navicon"></i>
+                </div>
+
+                <div class="list-menu">
+                  <i class="icon ion-close-round close-iframe"></i>
+                  <div class="intro-inner">
+                    <ul id="nav-menu">
+                      <li><a href="homepage.html">Home</a></li>
+                      <li><a href="profile.html">Profile</a></li>
+                      <li><a href="My-Order.html">My Order</a></li>
+                      <li><a href="Notification.html">Notification</a></li>
+                      <li><a href="My-Product.html">My Product</a></li>
+                      <li><a href="#" onclick="handleLogout()">Logout</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <section id="my-products" class="py-5">
+    <div class="container">
+      <div class="add-product mb-4 text-end">
+        <a href="start-product.html" class="btn btn-primary">➕ Add New Product</a>
+      </div>
+      <div class="row" id="product-list">
+        <!-- المنتجات ستظهر هنا -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal Popup for Editing -->
+  <div id="editModal" class="modal" style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 1000;
+      ">
+    <div style="
+          background: white;
+          margin: 5% auto;
+          padding: 20px;
+          width: 90%;
+          max-width: 600px;
+          border-radius: 10px;
+          position: relative;
+        ">
+      <span onclick="closeModal()" style="
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            cursor: pointer;
+            font-size: 20px;
+          ">&times;</span>
+      <h4>Edit Product</h4>
+      <form id="editProductForm">
+        <input type="hidden" id="editProductId" />
+
+        <div class="mb-3">
+          <label>Title</label>
+          <input type="text" id="editTitle" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+          <label>Description</label>
+          <textarea id="editDescription" class="form-control" rows="3"></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label>Category</label>
+          <input type="text" id="editCategory" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+          <label>Product Type</label>
+          <select id="editType" class="form-control">
+            <option value="physical">Physical</option>
+            <option value="digital">Digital</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label>Support this Project?</label>
+          <input type="checkbox" id="editForSupport" />
+        </div>
+
+        <div id="editSupportFields" style="display: none">
+          <div class="mb-3">
+            <label>Support Description</label>
+            <textarea id="editSupportDesc" class="form-control" rows="2"></textarea>
+          </div>
+          <div class="mb-3">
+            <label>Support Amount</label>
+            <input type="number" step="0.01" id="editSupportAmount" class="form-control" />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label>For Sale?</label>
+          <input type="checkbox" id="editForSale" />
+        </div>
+
+        <div id="editPriceContainer" class="mb-3">
+          <label>Price</label>
+          <input type="number" step="0.01" id="editPrice" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/isotope.js"></script>
+  <script src="js/imagesloaded.min.js"></script>
+  <script src="js/wow.min.js"></script>
+  <script src="js/custom.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      $(".navicon .circle").click(function () {
+        $(".list-menu").addClass("reveal-modal");
+      });
+
+      $(".close-iframe").click(function () {
+        $(".list-menu").removeClass("reveal-modal");
+      });
+    });
+  </script>
+</body>
+<script>
+  function toggleEditFields() {
+    const support = document.getElementById("editForSupport").checked;
+    const sale = document.getElementById("editForSale").checked;
+
+    document.getElementById("editSupportFields").style.display = support
+      ? "block"
+      : "none";
+    document.getElementById("editPriceContainer").style.display = sale
+      ? "block"
+      : "none";
+  }
+
+  async function fetchMyProducts() {
+    const token = localStorage.getItem("token");
+    const response = await fetch(`/api/product/mine`, {
+      headers: { Authorization: token },
+    });
+
+    const container = document.getElementById("product-list");
+
+    if (!response.ok) {
+      container.innerHTML =
+        '<p class="text-center">⚠️ Failed to load your products</p>';
+      return;
+    }
+
+    const products = await response.json();
+    container.innerHTML = "";
+
+    if (products.length === 0) {
+      container.innerHTML =
+        '<p class="text-center">🛒 You have no products yet.</p>';
+      return;
+    }
+
+    products.forEach((p) => {
+      const col = document.createElement("div");
+      col.className = "col-md-4 col-sm-6";
+
+      col.innerHTML = `
+        <div class="portfolio-thumb product-card">
+          <img src="${p.image_url || "images/default.jpg"
+        }" class="img-responsive" alt="Product Image">
+          <div class="actions">
+            <button onclick="editProduct(${p.product_id
+        })"><i class="fa fa-pencil"></i></button>
+            <button onclick="deleteProduct(${p.product_id
+        })"><i class="fa fa-trash"></i></button>
+          </div>
+          <div class="portfolio-overlay">
+            <div class="portfolio-item">
+              <h2>${p.title}</h2>
+            </div>
+          </div>
+        </div>
+      `;
+
+      container.appendChild(col);
+    });
+  }
+
+  async function deleteProduct(productId) {
+    const confirm = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    });
+    if (!confirm.isConfirmed) return;
+
+    const token = localStorage.getItem("token");
+
+    const res = await fetch(`/api/product/${productId}`, {
+      method: "DELETE",
+      headers: { Authorization: token },
+    });
+
+    if (res.ok) {
+      Swal.fire({
+        toast: true,
+        position: "top-end",
+        icon: "success",
+        title: "Product deleted successfully",
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+      });
+      fetchMyProducts();
+    } else {
+      Swal.fire({
+        toast: true,
+        position: "top-end",
+        icon: "error",
+        title: "Failed to delete product",
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+      });
+    }
+  }
+
+  async function editProduct(productId) {
+    try {
+      const token = localStorage.getItem("token");
+      const res = await fetch(`/api/product/${productId}`, {
+        headers: { Authorization: token },
+      });
+      const product = await res.json();
+
+      document.getElementById("editProductId").value = product.product_id;
+      document.getElementById("editTitle").value = product.title;
+      document.getElementById("editDescription").value = product.description;
+      document.getElementById("editPrice").value = product.price || "";
+      document.getElementById("editCategory").value = product.category;
+      document.getElementById("editType").value = product.product_type;
+      document.getElementById("editSupportAmount").value =
+        product.support_amount || "";
+      document.getElementById("editSupportDesc").value =
+        product.support_description || "";
+      document.getElementById("editForSale").checked =
+        product.is_for_sale == 1;
+      document.getElementById("editForSupport").checked =
+        product.is_for_support == 1;
+
+      toggleEditFields();
+
+      document.getElementById("editModal").style.display = "block";
+    } catch (err) {
+      Swal.fire({
+        toast: true,
+        position: "top-end",
+        icon: "error",
+        title: "Failed to load product",
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+      });
+      console.error(err);
+    }
+  }
+
+  function closeModal() {
+    document.getElementById("editModal").style.display = "none";
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    fetchMyProducts();
+    document
+      .getElementById("editForSupport")
+      .addEventListener("change", toggleEditFields);
+    document
+      .getElementById("editForSale")
+      .addEventListener("change", toggleEditFields);
+
+    document
+      .getElementById("editProductForm")
+      .addEventListener("submit", async function (e) {
+        e.preventDefault();
+        const id = document.getElementById("editProductId").value;
+        const data = {
+          title: document.getElementById("editTitle").value,
+          description: document.getElementById("editDescription").value,
+          category: document.getElementById("editCategory").value,
+          product_type: document.getElementById("editType").value,
+          is_for_sale: document.getElementById("editForSale").checked ? 1 : 0,
+          is_for_support: document.getElementById("editForSupport").checked
+            ? 1
+            : 0,
+          price: document.getElementById("editPrice").value,
+          support_amount: document.getElementById("editSupportAmount").value,
+          support_description:
+            document.getElementById("editSupportDesc").value,
+        };
+
+        try {
+          const token = localStorage.getItem("token");
+          const res = await fetch(`/api/product/${id}`, {
+            method: "PUT",
+            headers: {
+              Authorization: token,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          });
+
+          if (res.ok) {
+            showToastSuccess();
+            closeModal();
+            fetchMyProducts();
+          } else {
+            const error = await res.json();
+            Swal.fire({
+              toast: true,
+              position: "top-end",
+              icon: "error",
+              title: error.error || "Update failed",
+              showConfirmButton: false,
+              timer: 2000,
+              timerProgressBar: true,
+            });
+          }
+        } catch (err) {
+          Swal.fire({
+            toast: true,
+            position: "top-end",
+            icon: "error",
+            title: "Error updating product",
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+          });
+          console.error(err);
+        }
+      });
+  });
+
+  function showToastSuccess() {
+    Swal.fire({
+      toast: true,
+      position: "top-end",
+      icon: "success",
+      title: "Product updated successfully",
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+    });
+  }
+
+  function handleLogout() {
+    const token = localStorage.getItem("token");
+    if (!token) return (window.location.href = "/");
+
+    fetch("/api/auth/logout", {
+      method: "POST",
+      headers: {
+        Authorization: token,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("🟢", data.message);
+        localStorage.removeItem("token");
+        window.location.href = "/";
+      })
+      .catch((err) => {
+        console.error("❌ Error logging out:", err);
+        alert("❌ Failed to logout. Try again.");
+      });
+  }
+</script>
+
+</html>

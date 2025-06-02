@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Notifications - Support or Buy</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+
+  <!-- Font Icons CSS -->
+  <link rel="stylesheet" href="css/font-awesome.min.css" />
+  <link rel="stylesheet" href="css/ionicons.min.css" />
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Google web font -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300" rel="stylesheet" type="text/css" />
+
+  <style>
+    body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--text-dark);
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #050606 0%, #fbf9f6 150%);
+  min-height: 100vh;
+
+}
+
+    .notification-container {
+      max-width: 900px;
+      margin: 80px auto;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .notification-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .notification-header h2 {
+      font-size: 28px;
+      /* تكبير عنوان الصفحة */
+      margin-bottom: 20px;
+    }
+
+    .notification-item.UpdateStatus {
+      border-left-color: #2196f3;
+    }
+
+    .notification-item.read {
+      border-left-color: #111 !important;
+      /* أخضر */
+    }
+
+    .notification-tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+    }
+
+    .notification-tab {
+      padding: 10px 20px;
+      margin: 0 10px;
+      cursor: pointer;
+      font-size: 18px;
+      /* تكبير حجم نص التبويبات */
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .notification-tab.active {
+      background: #111112;
+      color: white;
+    }
+
+    .notification-tab:hover:not(.active) {
+      background: #f0f0f0;
+    }
+
+    .notification-section {
+      display: none;
+    }
+
+    .notification-section.active {
+      display: block;
+    }
+
+    .notification-item {
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      background: #f9f9f9;
+      border-left: 5px solid #111112;
+      transition: all 0.3s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 18px;
+      /* تكبير حجم نص الإشعارات */
+    }
+
+    .notification-item.unread {
+      background: #f0f7ff;
+    }
+
+    /* ألوان مختلفة لأنواع الإشعارات */
+    .notification-item.support {
+      border-left-color: #4caf50;
+      /* أخضر للإشعارات الدعم */
+    }
+
+    .notification-item.purchase {
+      border-left-color: #2196f3;
+      /* أزرق للإشعارات الشراء */
+    }
+
+    .notification-item.order {
+      border-left-color: #ce0202;
+      /* برتقالي لإشعارات الطلبات */
+    }
+
+    .notification-item.review {
+      border-left-color: #ffea2f;
+      /* برتقالي لإشعارات الطلبات */
+    }
+
+    .notification-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .notification-content {
+      flex: 1;
+    }
+
+    .notification-message {
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .notification-time {
+      font-size: 16px;
+      color: #666;
+    }
+
+    .notification-actions {
+      margin-left: 20px;
+    }
+
+    .mark-as-read {
+      background: none;
+      border: none;
+      color: #4a90e2;
+      cursor: pointer;
+      font-size: 16px;
+      padding: 8px 15px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .mark-as-read:hover {
+      background: rgba(74, 144, 226, 0.1);
+    }
+
+    .empty-notifications {
+      text-align: center;
+      padding: 40px;
+      color: #777;
+      font-size: 18px;
+    }
+
+    .empty-notifications i {
+      font-size: 50px;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .notification-container {
+        margin: 20px;
+        padding: 20px;
+      }
+
+      .notification-tabs {
+        flex-direction: column;
+      }
+
+      .notification-tab {
+        margin: 5px 0;
+        text-align: center;
+      }
+
+      .notification-item {
+        flex-direction: column;
+        padding: 15px;
+      }
+
+      .notification-actions {
+        margin-left: 0;
+        margin-top: 15px;
+        align-self: flex-end;
+      }
+    }
+
+    .nav-container {
+      background-color: #fff;
+    }
+
+    .list-menu.reveal-modal {
+      background-color: rgba(0, 0, 0, 0.7) !important;
+      /* بدل الأسود الكامل */
+    }
+
+    .intro-inner ul#nav-menu li a {
+      color: white !important;
+      text-decoration: none;
+    }
+
+    .intro-inner ul#nav-menu li a:hover {
+      text-decoration: underline;
+      /* أو أي تأثير حاب */
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Preloader section -->
+  <div class="preloader">
+    <div class="sk-spinner sk-spinner-pulse"></div>
+  </div>
+
+  <!-- Navigation section -->
+  <div class="nav-container">
+    <nav class="nav-inner transparent">
+      <div class="navbar">
+        <div class="container">
+          <div class="row">
+            <div class="brand">
+              <a href="homepage.html">Support or buy</a>
+            </div>
+
+            <div class="navicon">
+              <div class="menu-container">
+                <div class="circle dark inline">
+                  <i class="icon ion-navicon"></i>
+                </div>
+
+                <div class="list-menu">
+                  <i class="icon ion-close-round close-iframe"></i>
+                  <div class="intro-inner">
+                    <ul id="nav-menu">
+                      <li><a href="homepage.html">Home</a></li>
+                      <li><a href="profile.html">Profile</a></li>
+                      <li><a href="My-Order.html">My Order</a></li>
+                      <li><a href="Notification.html">Notification</a></li>
+                      <li><a href="My-Product.html">My Product</a></li>
+                      <li><a href="#" onclick="handleLogout()">Logout</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Notifications section -->
+  <section id="notifications">
+    <div class="container">
+      <div class="notification-container wow fadeInUp">
+        <div class="notification-header">
+          <h2 style="color: #111">My Notifications</h2>
+        </div>
+
+        <div class="notification-tabs">
+          <div class="notification-tab active" data-tab="all">All</div>
+          <div class="notification-tab" data-tab="purchase">Purchases</div>
+          <div class="notification-tab" data-tab="support">Supports</div>
+          <div class="notification-tab" data-tab="order">Order Updates</div>
+          <div class="notification-tab" data-tab="review">Reviews</div>
+        </div>
+
+        <div id="all-notifications" class="notification-section active">
+          <div class="empty-notifications">
+            <i class="fa fa-bell-o"></i>
+            <p>Loading notifications...</p>
+          </div>
+        </div>
+
+        <div id="purchase-notifications" class="notification-section">
+          <div class="empty-notifications">
+            <i class="fa fa-shopping-cart"></i>
+            <p>No purchase notifications yet</p>
+          </div>
+        </div>
+
+        <div id="support-notifications" class="notification-section">
+          <div class="empty-notifications">
+            <i class="fa fa-heart"></i>
+            <p>No support notifications yet</p>
+          </div>
+        </div>
+
+        <div id="order-notifications" class="notification-section">
+          <div class="empty-notifications">
+            <i class="fa fa-truck"></i>
+            <p>No order updates yet</p>
+          </div>
+        </div>
+
+        <div id="review-notifications" class="notification-section">
+          <div class="empty-notifications">
+            <i class="fa fa-star"></i>
+            <p>No review notifications yet</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer section -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 text-center">
+          <p class="wow fadeInUp">Created by</p>
+
+          <!-- Aiman -->
+          <div class="contributor d-flex justify-content-center align-items-center">
+            <p class="contributor-name me-3">Aiman Bani-Hani</p>
+            <ul class="social-icon d-flex">
+              <li>
+                <a href="https://www.linkedin.com/in/aiman-bani-hani-a30542254/" target="_blank"
+                  rel="noopener noreferrer" class="fa fa-linkedin-square"></a>
+              </li>
+              <li>
+                <a href="https://github.com/4imn" target="_blank" rel="noopener noreferrer" class="fa fa-github"></a>
+              </li>
+              <li>
+                <a href="https://wa.me/+962782498819" target="_blank" rel="noopener noreferrer"
+                  class="fa fa-whatsapp"></a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Momen -->
+          <div class="contributor d-flex justify-content-center align-items-center mt-3">
+            <p class="contributor-name me-3">Mo'men Bani-Hani</p>
+            <ul class="social-icon d-flex">
+              <li>
+                <a href="https://www.linkedin.com/in/momenbanihani/" target="_blank" rel="noopener noreferrer"
+                  class="fa fa-linkedin-square"></a>
+              </li>
+              <li>
+                <a href="https://github.com/MomenBaniHani" target="_blank" rel="noopener noreferrer"
+                  class="fa fa-github"></a>
+              </li>
+              <li>
+                <a href="https://wa.me/+962787105219" target="_blank" rel="noopener noreferrer"
+                  class="fa fa-whatsapp"></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Javascript -->
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/wow.min.js"></script>
+  <script src="js/custom.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      // Initialize menu toggle
+      $(".navicon .circle").click(function () {
+        $(".list-menu").addClass("reveal-modal");
+      });
+
+      $(".close-iframe").click(function () {
+        $(".list-menu").removeClass("reveal-modal");
+      });
+
+      // Tab switching functionality
+      document.querySelectorAll(".notification-tab").forEach((tab) => {
+        tab.addEventListener("click", () => {
+          // Update active tab
+          document.querySelectorAll(".notification-tab").forEach((t) => {
+            t.classList.remove("active");
+          });
+          tab.classList.add("active");
+
+          // Show corresponding section
+          document
+            .querySelectorAll(".notification-section")
+            .forEach((section) => {
+              section.classList.remove("active");
+            });
+          document
+            .getElementById(`${tab.dataset.tab}-notifications`)
+            .classList.add("active");
+        });
+      });
+
+      // Load notifications
+      await loadNotifications();
+
+      // Handle click on mark as read buttons
+      document.addEventListener("click", async (e) => {
+        if (e.target.classList.contains("mark-as-read")) {
+          const notificationId = e.target.dataset.id;
+          await markNotificationAsRead(notificationId);
+          await loadNotifications();
+        }
+      });
+    });
+
+    async function loadNotifications() {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await fetch("/api/notifications", {
+          headers: {
+            Authorization: token,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch notifications");
+        }
+
+        const notifications = await response.json();
+        renderNotifications(notifications);
+      } catch (error) {
+        console.error("Error loading notifications:", error);
+        document.getElementById("all-notifications").innerHTML = `
+          <div class="empty-notifications">
+            <i class="fa fa-exclamation-triangle"></i>
+            <p>Error loading notifications</p>
+          </div>
+        `;
+      }
+    }
+
+    function renderNotifications(notifications) {
+      if (!notifications || notifications.length === 0) {
+        document.getElementById("all-notifications").innerHTML = `
+          <div class="empty-notifications">
+            <i class="fa fa-bell-o"></i>
+            <p>No notifications yet</p>
+          </div>
+        `;
+        return;
+      }
+
+      // Filter notifications by type
+      const purchaseNotifications = notifications.filter(
+        (n) => n.type === "order"
+      );
+      const supportNotifications = notifications.filter(
+        (n) => n.type === "support"
+      );
+      const orderNotifications = notifications.filter(
+        (n) => n.type === "UpdateStatus"
+      );
+      const reviewNotifications = notifications.filter(
+        (n) => n.type === "review"
+      );
+      // Render all notifications
+      renderNotificationSection("all-notifications", notifications);
+
+      // Render filtered notifications
+      renderNotificationSection(
+        "purchase-notifications",
+        purchaseNotifications,
+        "fa-shopping-cart",
+        "No purchase notifications yet"
+      );
+      renderNotificationSection(
+        "support-notifications",
+        supportNotifications,
+        "fa-heart",
+        "No support notifications yet"
+      );
+      renderNotificationSection(
+        "order-notifications",
+        orderNotifications,
+        "fa-truck",
+        "No order updates yet"
+      );
+      renderNotificationSection(
+        "review-notifications",
+        reviewNotifications,
+        "fa-star",
+        "No review notifications yet"
+      );
+    }
+
+    function renderNotificationSection(
+      sectionId,
+      notifications,
+      emptyIcon = "fa-bell-o",
+      emptyText = "No notifications"
+    ) {
+      const container = document.getElementById(sectionId);
+
+      if (!notifications || notifications.length === 0) {
+        container.innerHTML = `
+          <div class="empty-notifications">
+            <i class="fa ${emptyIcon}"></i>
+            <p>${emptyText}</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = notifications
+        .map(
+          (notification) => `
+<div class="notification-item ${notification.is_read ? "read" : "unread"} ${notification.type || ""
+            }"
+             id="notification-${notification.id}" >
+          <div class="notification-content">
+            <div class="notification-message">${notification.message}</div>
+            <div class="notification-time">
+              ${new Date(notification.created_at).toLocaleString()}
+            </div>
+          </div>
+          ${!notification.is_read
+              ? `
+            <div class="notification-actions">
+              <button class="mark-as-read" data-id="${notification.id}">
+                Mark as read
+              </button>
+            </div>
+          `
+              : ""
+            }
+        </div>
+      `
+        )
+        .join("");
+    }
+
+    async function markNotificationAsRead(notificationId) {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await fetch(
+          `/api/notifications/${notificationId}/read`,
+          {
+            method: "PUT",
+            headers: {
+              Authorization: token,
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to mark notification as read");
+        }
+
+        return await response.json();
+      } catch (error) {
+        console.error("Error marking notification as read:", error);
+        throw error;
+      }
+    }
+    function handleLogout() {
+      const token = localStorage.getItem("token");
+      if (!token) return (window.location.href = "/");
+
+      fetch("/api/auth/logout", {
+        method: "POST",
+        headers: {
+          Authorization: token,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("🟢", data.message);
+          localStorage.removeItem("token");
+          window.location.href = "/";
+        })
+        .catch((err) => {
+          console.error("❌ Error logging out:", err);
+          alert("❌ Failed to logout. Try again.");
+        });
+    }
+  </script>
+</body>
+
+</html>

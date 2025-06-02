@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--
+
+Template 2082 Pure Mix
+
+http://www.tooplate.com/view/2082-pure-mix
+
+-->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+
+    <!-- Site title
+   ================================================== -->
+    <title>Product - Support or Buy</title>
+
+    <!-- Bootstrap CSS
+   ================================================== -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+
+    <!-- Animate CSS
+   ================================================== -->
+    <link rel="stylesheet" href="css/animate.min.css" />
+
+    <!-- Font Icons CSS
+   ================================================== -->
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/ionicons.min.css" />
+
+    <!-- Main CSS
+   ================================================== -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Google web font 
+   ================================================== -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <style>
+      .btn-area {
+        margin-top: 20px;
+      }
+
+      .btn-support,
+      .btn-buy {
+        margin: 5px;
+        padding: 10px 25px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+      }
+
+      .btn-support {
+        background-color: #28a745;
+      }
+
+      .btn-buy {
+        background-color: #007bff;
+      }
+
+      #product-image {
+        max-height: 400px;
+        object-fit: cover;
+        width: 100%;
+        border-radius: 8px;
+        margin-top: 20px;
+      }
+
+      /* social icon as-is */
+      .social-icon {
+        padding: 0;
+        margin: 0;
+      }
+
+      .social-icon li {
+        list-style: none;
+        display: inline-block;
+      }
+
+      .social-icon li a {
+        border-radius: 100px;
+        border: 1px solid transparent;
+        color: #909090;
+        font-size: 18px;
+        width: 50px;
+        height: 50px;
+        line-height: 48px;
+        text-align: center;
+        vertical-align: middle;
+        text-decoration: none;
+        transition: all 0.4s ease-in-out;
+        margin: 0 6px;
+      }
+
+      .social-icon li a:hover {
+        background: #ffffff;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+      :root {
+        --primary-color: #ffffff;
+        --secondary-color: #000000;
+        --gray: #777777;
+        --light-gray: #cccccc;
+        --dark-gray: #333333;
+      }
+
+      body,
+      html {
+        background-color: var(--primary-color) !important;
+        color: var(--secondary-color) !important;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      a,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p,
+      span,
+      div,
+      label {
+        color: var(--secondary-color) !important;
+      }
+
+      input,
+      textarea,
+      select,
+      button {
+        background-color: var(--light-gray) !important;
+        color: var(--secondary-color) !important;
+        border: 1px solid var(--gray) !important;
+      }
+
+      /* Button base style */
+      .btn-support,
+      .btn-buy {
+        background: var(--secondary-color) !important;
+        color: var(--primary-color) !important;
+        padding: 12px 28px;
+        border: 2px solid transparent;
+        border-radius: 25px;
+        font-weight: 700;
+        text-decoration: none;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+      }
+
+      .btn-support:hover,
+      .btn-buy:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        border-color: var(--secondary-color);
+        background: transparent !important;
+        color: var(--secondary-color) !important;
+      }
+
+      /* Adjust social icons hover */
+      .social-icon li a {
+        color: var(--secondary-color) !important;
+        border: 1px solid var(--gray) !important;
+      }
+
+      .social-icon li a:hover {
+        background: var(--primary-color) !important;
+        color: var(--secondary-color) !important;
+      }
+
+      .intro-inner ul#nav-menu li a {
+        color: white !important;
+        text-decoration: none;
+      }
+
+      .intro-inner ul#nav-menu li a:hover {
+        text-decoration: underline;
+        /* أو أي تأثير حاب */
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Preloader section
+================================================== -->
+    <div class="preloader">
+      <div class="sk-spinner sk-spinner-pulse"></div>
+    </div>
+
+    <!-- Navigation section
+================================================== -->
+    <div class="nav-container">
+      <nav class="nav-inner transparent">
+        <div class="navbar">
+          <div class="container">
+            <div class="row">
+              <div class="brand">
+                <a href="homepage.html">Support or Buy</a>
+              </div>
+
+              <div class="navicon">
+                <div class="menu-container">
+                  <div class="circle dark inline">
+                    <i class="icon ion-navicon"></i>
+                  </div>
+
+                  <div class="list-menu">
+                    <i class="icon ion-close-round close-iframe"></i>
+                    <div class="intro-inner">
+                      <ul id="nav-menu">
+                        <li><a href="homepage.html">Home</a></li>
+                        <li><a href="profile.html">Profile</a></li>
+                        <li><a href="My-Order.html">My Order</a></li>
+                        <li><a href="Notification.html">Notification</a></li>
+                        <li><a href="My-Product.html">My Product</a></li>
+                        <li><a href="#" onclick="handleLogout()">Logout</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Header section
+================================================== -->
+
+    <!-- Single Project section
+================================================== -->
+    <section id="single-project">
+      <div class="container">
+        <div class="row">
+          <!-- معلومات الحرفي والمنتج -->
+          <div
+            class="wow fadeInUp col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-4"
+            data-wow-delay="2.3s"
+          >
+            <div class="project-info">
+              <h4>Artisan</h4>
+              <p id="artisanName" data-wow-delay="1.5s">...</p>
+            </div>
+            <div class="project-info">
+              <h4>Artisan Bio</h4>
+              <p id="artisanBio" data-wow-delay="1.6s">...</p>
+            </div>
+            <div class="project-info">
+              <h4>Publication date</h4>
+              <p id="postDate" data-wow-delay="1.7s">...</p>
+            </div>
+            <div class="project-info">
+              <h4>Category</h4>
+              <p id="productCategory" data-wow-delay="1.8s">...</p>
+            </div>
+            <div class="project-info">
+              <h4>Product Type</h4>
+              <p id="productType" data-wow-delay="1.9s">...</p>
+            </div>
+            <div class="project-info">
+              <h4>Price</h4>
+              <p id="productPrice" data-wow-delay="2.0s">...</p>
+            </div>
+          </div>
+
+          <!-- تفاصيل وصورة المنتج -->
+          <div class="wow fadeInUp col-md-7 col-sm-7" data-wow-delay="2.6s">
+            <div class="project-info">
+              <h4>Title</h4>
+              <p id="productTitle" data-wow-delay="1.5s">...</p>
+            </div>
+            <p id="productDescription" data-wow-delay="1.6s"></p>
+            <div class="project-info">
+              <p
+                id="supportDescription"
+                style="color: #555"
+                data-wow-delay="1.7s"
+              ></p>
+            </div>
+            <div
+              id="supportProgressContainer"
+              style="display: none; margin-top: 10px"
+            >
+              <div
+                style="
+                  background-color: var(--light-gray);
+                  border-radius: 20px;
+                  overflow: hidden;
+                "
+              >
+                <div
+                  id="supportProgressBar"
+                  style="
+                    background-color: #131414;
+                    height: 20px;
+                    width: 0%;
+                    position: relative;
+                  "
+                >
+                  <span
+                    id="supportProgressPercentage"
+                    style="
+                      position: absolute;
+                      left: 50%;
+                      top: 50%;
+                      transform: translate(-50%, -50%);
+                      color: white;
+                      font-weight: bold;
+                    "
+                  >
+                    0%
+                  </span>
+                </div>
+                <div
+                  id="supportProgressContainer"
+                  style="display: none; margin-top: 10px"
+                >
+                  <div
+                    style="
+                      background-color: var(--light-gray);
+                      border-radius: 20px;
+                      overflow: hidden;
+                      position: relative;
+                    "
+                  >
+                    <div
+                      id="supportProgressBar"
+                      style="
+                        background-color: #131414;
+                        height: 20px;
+                        width: 0%;
+                        position: relative;
+                      "
+                    >
+                      <span
+                        id="supportProgressPercentage"
+                        style="
+                          position: absolute;
+                          left: 50%;
+                          top: 50%;
+                          transform: translate(-50%, -50%);
+                          color: white;
+                          font-weight: bold;
+                        "
+                      >
+                        0%
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p
+                id="supportProgressText"
+                style="
+                  margin-top: 5px;
+                  font-size: 0.9rem;
+                  color: var(--secondary-color);
+                "
+              ></p>
+            </div>
+
+            <img
+              id="productImage"
+              src="images/default.jpg"
+              class="img-responsive"
+              alt="Product Image"
+            />
+            <div class="btn-area" id="button-area"></div>
+          </div>
+        </div>
+        <div class="wow fadeInUp col-md-7 col-sm-7" data-wow-delay="2.8s">
+          <div class="project-info">
+            <h4 style="color: #000">Reviews</h4>
+            <div id="reviews-container">
+              <p>Loading reviews...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer section
+================================================== -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 text-center">
+            <p class="wow fadeInUp">Created by</p>
+
+            <!-- Aiman -->
+            <div
+              class="contributor d-flex justify-content-center align-items-center"
+            >
+              <p class="contributor-name me-3">Aiman Bani-Hani</p>
+              <ul class="social-icon d-flex">
+                <li>
+                  <a
+                    href="https://www.linkedin.com/in/aiman-bani-hani-a30542254/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="fa fa-linkedin-square"
+                  ></a>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/4imn"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="fa fa-github"
+                  ></a>
+                </li>
+                <li>
+                  <a
+                    href="https://wa.me/+962782498819"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="fa fa-whatsapp"
+                  ></a>
+                </li>
+              </ul>
+            </div>
+            <!-- Momen -->
+            <div
+              class="contributor d-flex justify-content-center align-items-center mt-3"
+            >
+              <p class="contributor-name me-3">Mo'men Bani-Hani</p>
+              <ul class="social-icon d-flex">
+                <li>
+                  <a
+                    href="https://www.linkedin.com/in/momenbanihani/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="fa fa-linkedin-square"
+                  ></a>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/MomenBaniHani"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="fa fa-github"
+                  ></a>
+                </li>
+                <li>
+                  <a
+                    href="https://wa.me/+962787105219"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="fa fa-whatsapp"
+                  ></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Javascript 
+================================================== -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/custom.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", async () => {
+        const params = new URLSearchParams(window.location.search);
+        const productId = params.get("product_id");
+
+        if (!productId) {
+          alert("Product number is not found in the link");
+          return;
+        }
+
+        try {
+          const response = await fetch(`/api/product/${productId}`);
+          const data = await response.json();
+          const token = localStorage.getItem("token");
+          let currentUserId = null;
+          if (token) {
+            try {
+              const payload = JSON.parse(atob(token.split(".")[1]));
+              currentUserId = payload.id;
+            } catch (err) {
+              console.error("Error decoding token:", err);
+            }
+          }
+
+          if (data.artisan_name && data.artisan_name.trim() !== "") {
+            document.getElementById("artisanName").textContent =
+              data.artisan_name;
+          } else {
+            document.getElementById("artisanName").textContent = "unknown";
+          }
+
+          document.getElementById("artisanBio").textContent =
+            data.bio || "No summary";
+          document.getElementById("postDate").textContent = new Date(
+            data.created_at
+          ).toLocaleDateString();
+          document.getElementById("productCategory").textContent =
+            data.category;
+          document.getElementById("productType").textContent =
+            data.product_type;
+          document.getElementById("productPrice").textContent =
+            data.price + " Dinner";
+
+          document.getElementById("productTitle").textContent = data.title;
+          document.getElementById("productDescription").textContent =
+            data.description;
+
+          if (data.is_for_support && data.support_description) {
+            const support = document.getElementById("supportDescription");
+            support.style.display = "block";
+            support.innerHTML = `
+          <strong style="display:block;">Description :</strong>
+          <p style="direction: LTR;">${data.support_description}</p>
+        `;
+          }
+          if (data.is_for_support) {
+            const supportAmount = parseFloat(data.support_amount) || 0;
+            const supportedAmount = parseFloat(data.supported_amount) || 0;
+            const percent =
+              supportAmount > 0
+                ? Math.min(
+                    100,
+                    Math.round((supportedAmount / supportAmount) * 100)
+                  )
+                : 0;
+
+            document.getElementById("supportProgressContainer").style.display =
+              "block";
+            document.getElementById("supportProgressBar").style.width =
+              percent + "%";
+            document.getElementById(
+              "supportProgressPercentage"
+            ).textContent = `${percent}%`;
+          }
+
+          if (data.product_image) {
+            document.getElementById("productImage").src =
+              "/" + data.product_image;
+          }
+
+          const btnArea = document.getElementById("button-area");
+          btnArea.innerHTML = "";
+          // إذا كان المستخدم الحالي هو صاحب المنتج، لا تظهر أي زر
+          if (currentUserId && currentUserId === data.user_id) {
+            // Hide buttons
+            console.log(
+              "Current user is the product owner. Hiding action buttons."
+            );
+            loadProductReviews(productId);
+            return; // Skip rendering the buttons
+          }
+          if (data.is_for_support) {
+            const supportBtn = document.createElement("button");
+            supportBtn.className = "btn-support";
+            supportBtn.textContent = "Support";
+
+            supportBtn.onclick = async () => {
+              const { value: amount } = await Swal.fire({
+                title: "Enter Support Amount",
+                input: "number",
+                inputLabel: "Amount (JOD)",
+                inputPlaceholder: "Example: 10",
+                confirmButtonText: "Support Now",
+                showCancelButton: true,
+                inputAttributes: {
+                  min: 1,
+                  step: 0.5,
+                },
+                preConfirm: (value) => {
+                  if (!value || value <= 0) {
+                    Swal.showValidationMessage("Please enter a valid amount");
+                  }
+                },
+              });
+
+              if (amount) {
+                const token = localStorage.getItem("token");
+                const response = await fetch("/api/support", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                    Authorization: token,
+                  },
+                  body: JSON.stringify({
+                    product_id: data.product_id,
+                    artisan_id: data.user_id,
+                    amount: parseFloat(amount),
+                  }),
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                  Swal.fire({
+                    toast: true,
+                    position: "top-end",
+                    icon: "success",
+                    title: result.message || "Support sent successfully",
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                  });
+                } else {
+                  Swal.fire(
+                    "❌ Failed",
+                    result.error || "An error occurred",
+                    "error"
+                  );
+                }
+              }
+            };
+
+            btnArea.appendChild(supportBtn);
+          }
+
+          if (data.is_for_sale) {
+            const buyBtn = document.createElement("button");
+            buyBtn.className = "btn-buy";
+            buyBtn.textContent = "Buy";
+
+            buyBtn.onclick = async () => {
+              const unitPrice = parseFloat(data.price); // السعر من البيانات
+
+              const { value: quantity } = await Swal.fire({
+                title: "Enter Quantity",
+                input: "number",
+                inputLabel: "Number of Items",
+                inputPlaceholder: "Example: 1",
+                confirmButtonText: "Next",
+                showCancelButton: true,
+                inputAttributes: {
+                  min: 1,
+                  step: 1,
+                },
+                preConfirm: (value) => {
+                  if (!value || value <= 0 || !Number.isInteger(+value)) {
+                    Swal.showValidationMessage(
+                      "Please enter a valid whole number"
+                    );
+                  }
+                },
+              });
+
+              if (quantity) {
+                const total = unitPrice * parseInt(quantity);
+                const confirm = await Swal.fire({
+                  title: "Confirm Purchase",
+                  html: `<p>You are buying <strong>${quantity}</strong> item(s) for a total of <strong>${total.toFixed(
+                    2
+                  )} JOD</strong>.</p>`,
+                  icon: "info",
+                  showCancelButton: true,
+                  confirmButtonText: "Confirm",
+                  cancelButtonText: "Cancel",
+                });
+
+                if (confirm.isConfirmed) {
+                  const token = localStorage.getItem("token");
+                  const response = await fetch("/api/orders", {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                      Authorization: token,
+                    },
+                    body: JSON.stringify({
+                      artisan_id: data.user_id,
+                      products: [
+                        {
+                          product_id: data.product_id,
+                          quantity: parseInt(quantity),
+                        },
+                      ],
+                    }),
+                  });
+
+                  const result = await response.json();
+
+                  if (response.ok) {
+                    Swal.fire({
+                      toast: true,
+                      position: "top-end",
+                      icon: "success",
+                      title: result.message || "Order placed successfully",
+                      showConfirmButton: false,
+                      timer: 2000,
+                      timerProgressBar: true,
+                    });
+                  } else {
+                    Swal.fire(
+                      "❌ Failed",
+                      result.error || "An error occurred",
+                      "error"
+                    );
+                  }
+                }
+              }
+            };
+
+            btnArea.appendChild(buyBtn);
+            loadProductReviews(productId);
+            // Load reviews
+          }
+        } catch (error) {
+          console.error("❌ Failed to load product data:", error);
+        }
+      });
+
+      function handleLogout() {
+        const token = localStorage.getItem("token");
+        if (!token) return (window.location.href = "/");
+
+        fetch("/api/auth/logout", {
+          method: "POST",
+          headers: {
+            Authorization: token,
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("🟢", data.message);
+            localStorage.removeItem("token");
+            window.location.href = "/";
+          })
+          .catch((err) => {
+            console.error("❌ Error logging out:", err);
+            alert("❌ Failed to logout. Try again.");
+          });
+      }
+      async function loadProductReviews(productId) {
+        const container = document.getElementById("reviews-container");
+
+        try {
+          const res = await fetch(`/api/review/product/${productId}`);
+          if (!res.ok) throw new Error("Failed to fetch reviews");
+
+          const reviews = await res.json();
+
+          if (!reviews.length) {
+            container.innerHTML = "<p>No reviews yet.</p>";
+            return;
+          }
+
+          container.innerHTML = reviews
+            .map(
+              (review) => `
+      <div style="margin-bottom: 15px; padding: 10px; border-bottom: 1px solid #ddd;">
+<strong>${review.reviewer_name}</strong><br>
+        <span style="color: #ffcc00; margin-left: 5px;">
+          ${"★".repeat(review.rating)}${"☆".repeat(5 - review.rating)}
+        </span>
+        <p style="margin: 5px 0 0;">${review.comment || ""}</p>
+      </div>
+    `
+            )
+            .join("");
+        } catch (err) {
+          console.error("Error loading reviews:", err);
+          container.innerHTML = "<p>Error loading reviews</p>";
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!--
+
+Template 2082 Pure Mix
+
+http://www.tooplate.com/view/2082-pure-mix
+
+-->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+
+  <!-- Site title
+   ================================================== -->
+  <title>Support OR Buy</title>
+
+  <!-- Bootstrap CSS
+   ================================================== -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+
+  <!-- Animate CSS
+   ================================================== -->
+  <link rel="stylesheet" href="css/animate.min.css" />
+
+  <!-- Font Icons CSS
+   ================================================== -->
+  <link rel="stylesheet" href="css/font-awesome.min.css" />
+  <link rel="stylesheet" href="css/ionicons.min.css" />
+
+  <!-- Main CSS
+   ================================================== -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Google web font 
+   ================================================== -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300" rel="stylesheet" type="text/css" />
+
+  <style>
+    .selected {
+      background: #111112 !important;
+      color: #ffffff !important;
+    }
+
+    .portfolio-thumb {
+      height: 300px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .portfolio-thumb img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .iso-box {
+      width: calc(33.333% - 20px);
+      box-sizing: border-box;
+    }
+
+    @media (max-width: 768px) {
+      .iso-box {
+        width: calc(50% - 20px);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .iso-box {
+        width: 100%;
+      }
+    }
+
+    .filters-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .filter-group {
+      display: flex;
+      gap: 10px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .filter-group li a {
+      padding: 8px 16px;
+      text-transform: uppercase;
+      border-radius: 4px;
+      background-color: #f0f0f0;
+      color: #333;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .filter-group li a:hover,
+    .filter-group li a.selected {
+      background-color: #111112;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .search-box {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .search-box input {
+      padding: 6px 12px;
+      border: none;
+      border-bottom: 2px solid #f0f0f0;
+      border-radius: 0;
+      outline: none;
+    }
+
+    /* Chrome / Edge */
+    .price-input::-webkit-inner-spin-button {
+      opacity: 1;
+      appearance: auto;
+    }
+
+    .search-box button {
+      padding: 8px 13px;
+      background-color: #f0f0f0;
+      color: #333;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .search-box button:hover {
+      background-color: #111112;
+      color: #fff;
+    }
+
+    .price-input {
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 120px;
+    }
+
+    .contributor {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .contributor-name {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 0 15px 0 0;
+    }
+
+    /* social icon as-is */
+    .social-icon {
+      padding: 0;
+      margin: 0;
+    }
+
+    .social-icon li {
+      list-style: none;
+      display: inline-block;
+    }
+
+    .social-icon li a {
+      border-radius: 100px;
+      border: 1px solid transparent;
+      color: #909090;
+      font-size: 18px;
+      width: 50px;
+      height: 50px;
+      line-height: 48px;
+      text-align: center;
+      vertical-align: middle;
+      text-decoration: none;
+      transition: all 0.4s ease-in-out;
+      margin: 0 6px;
+    }
+
+    .social-icon li a:hover {
+      background: #ffffff;
+    }
+
+    .intro-inner ul#nav-menu li a {
+      color: white !important;
+      text-decoration: none;
+    }
+
+    .intro-inner ul#nav-menu li a:hover {
+      text-decoration: underline;
+      /* أو أي تأثير حاب */
+    }
+    .header-one{
+        background: linear-gradient(135deg, #050606 0%, #fbf9f6 150%);
+    }
+    .header-one h3,h1{
+      color: #fff;
+      text-shadow: #ccc;
+    }
+      .header-one h1 {
+    font-size: 36px;
+  }
+
+  .header-one h3 {
+    font-size: 20px;
+  }
+  </style>
+</head>
+
+<body>
+  <!-- Preloader section
+================================================== -->
+  <div class="preloader">
+    <div class="sk-spinner sk-spinner-pulse"></div>
+  </div>
+
+  <!-- Navigation section
+================================================== -->
+  <div class="nav-container">
+    <nav class="nav-inner transparent">
+      <div class="navbar">
+        <div class="container">
+          <div class="row">
+            <div class="brand">
+              <a href="homepage.html">Support or buy</a>
+            </div>
+
+            <div class="navicon">
+              <div class="menu-container">
+                <div class="circle dark inline">
+                  <i class="icon ion-navicon"></i>
+                </div>
+
+                <div class="list-menu">
+                  <i class="icon ion-close-round close-iframe"></i>
+                  <div class="intro-inner">
+                    <ul id="nav-menu">
+                      <li><a href="homepage.html">Home</a></li>
+                      <li><a href="profile.html">Profile</a></li>
+                      <li><a href="My-Order.html">My Order</a></li>
+                      <li><a href="Notification.html">Notification</a></li>
+                      <li><a href="My-Product.html">My Product</a></li>
+                      <li><a href="#" onclick="handleLogout()">Logout</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Header section
+================================================== -->
+  <section id="header" class="header-one">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+          <div class="header-thumb">
+            <h3 class="wow fadeInUp" data-wow-delay="1.9s">
+              welcome to website
+            </h3>
+            <h1 class="wow fadeIn" data-wow-delay="1.6s">
+              Support<br />OR<br />Buy
+            </h1>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio section
+================================================== -->
+  <section id="portfolio">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <!-- iso section -->
+          <div class="iso-section wow fadeInUp">
+            <div class="filters-bar">
+              <!-- فلتر النوع -->
+              <ul id="type-filters" class="filter-group">
+                <li><a data-type="" onclick="setTypeFilter('')">All</a></li>
+                <li>
+                  <a data-type="support" onclick="setTypeFilter('support')">Support</a>
+                </li>
+                <li>
+                  <a data-type="buy" onclick="setTypeFilter('buy')">Buy</a>
+                </li>
+              </ul>
+
+              <!-- فلتر الترتيب -->
+              <ul id="order-filters" class="filter-group">
+                <li>
+                  <a data-order="popular" onclick="setOrderFilter('popular')">Popular</a>
+                </li>
+                <li>
+                  <a data-order="newest" onclick="setOrderFilter('newest')">Newest</a>
+                </li>
+              </ul>
+
+              <!-- حقل البحث -->
+              <div class="price-filter"></div>
+
+              <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search..." />
+                <button id="clearSearchBtn" class="fa fa-close" style="display: none"></button>
+                <p id="StoMax" style="display: none">|</p>
+
+                <input type="number" id="minPrice" placeholder="Min Price" class="price-input" style="display: none" />
+                <p id="MaxtoMin" style="display: none">|</p>
+                <input type="number" id="maxPrice" placeholder="Max Price" class="price-input" style="display: none" />
+
+                <button id="searchBtn" class="fa fa-search"></button>
+              </div>
+            </div>
+
+            <!-- iso box section -->
+            <div class="iso-box-section wow fadeInUp">
+              <div class="iso-box-wrapper col4-iso-box">
+                <div class="iso-box photoshop branding col-md-4 col-sm-6">
+                  <div class="portfolio-thumb"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer section
+================================================== -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 text-center">
+          <p class="wow fadeInUp">Created by</p>
+
+          <!-- Aiman -->
+          <div class="contributor d-flex justify-content-center align-items-center">
+            <p class="contributor-name me-3">Aiman Bani-Hani</p>
+            <ul class="social-icon d-flex">
+              <li>
+                <a href="https://www.linkedin.com/in/aiman-bani-hani-a30542254/" target="_blank"
+                  rel="noopener noreferrer" class="fa fa-linkedin-square"></a>
+              </li>
+              <li>
+                <a href="https://github.com/4imn" target="_blank" rel="noopener noreferrer" class="fa fa-github"></a>
+              </li>
+              <li>
+                <a href="https://wa.me/+962782498819" target="_blank" rel="noopener noreferrer"
+                  class="fa fa-whatsapp"></a>
+              </li>
+            </ul>
+          </div>
+          <!-- Momen -->
+          <div class="contributor d-flex justify-content-center align-items-center mt-3">
+            <p class="contributor-name me-3">Mo'men Bani-Hani</p>
+            <ul class="social-icon d-flex">
+              <li>
+                <a href="https://www.linkedin.com/in/momenbanihani/" target="_blank" rel="noopener noreferrer"
+                  class="fa fa-linkedin-square"></a>
+              </li>
+              <li>
+                <a href="https://github.com/MomenBaniHani" target="_blank" rel="noopener noreferrer"
+                  class="fa fa-github"></a>
+              </li>
+              <li>
+                <a href="https://wa.me/+962787105219" target="_blank" rel="noopener noreferrer"
+                  class="fa fa-whatsapp"></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Javascript 
+================================================== -->
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/isotope.js"></script>
+  <script src="js/imagesloaded.min.js"></script>
+  <script src="js/wow.min.js"></script>
+  <script src="js/custom.js"></script>
+</body>
+<script>
+  let selectedType = "";
+  let selectedOrder = "popular";
+
+  function setTypeFilter(type) {
+    selectedType = type;
+    updateSelectedUI("type-filters", type, "data-type");
+    togglePriceInputs(type); // ✅ إظهار أو إخفاء حقل السعر حسب الفلتر
+    fetchFromProductAPI();
+  }
+
+  function setOrderFilter(order) {
+    selectedOrder = order;
+    updateSelectedUI("order-filters", order, "data-order");
+    fetchFromProductAPI();
+  }
+
+  function updateSelectedUI(groupId, selectedValue, attributeName) {
+    const buttons = document.querySelectorAll(`#${groupId} a`);
+    buttons.forEach((btn) => {
+      if (btn.getAttribute(attributeName) === selectedValue) {
+        btn.classList.add("selected");
+      } else {
+        btn.classList.remove("selected");
+      }
+    });
+  }
+
+  function togglePriceInputs(type) {
+    const minPrice = document.getElementById("minPrice");
+    const maxPrice = document.getElementById("maxPrice");
+    const StoMax = document.getElementById("StoMax");
+    const MaxtoMin = document.getElementById("MaxtoMin");
+
+    if (type === "buy") {
+      minPrice.style.display = "flex";
+      maxPrice.style.display = "flex";
+      StoMax.style.display = "flex";
+      MaxtoMin.style.display = "flex";
+    } else {
+      minPrice.style.display = "none";
+      maxPrice.style.display = "none";
+      StoMax.style.display = "none";
+      MaxtoMin.style.display = "none";
+      minPrice.value = "";
+      maxPrice.value = "";
+    }
+  }
+
+  function fetchFromProductAPI() {
+    const query = document.getElementById("searchInput").value.trim();
+    const minPrice = document.getElementById("minPrice").value;
+    const maxPrice = document.getElementById("maxPrice").value;
+
+    if (query || minPrice || maxPrice) {
+      fetchFromSearchAPI();
+      return;
+    }
+
+    const params = new URLSearchParams();
+    if (selectedType) params.append("type", selectedType);
+    if (selectedOrder) params.append("order", selectedOrder);
+
+    fetch(`/api/product?${params.toString()}`)
+      .then((res) => res.json())
+      .then(renderProducts)
+      .catch((error) =>
+        console.error("❌ Error fetching from /api/product:", error)
+      );
+  }
+
+  function fetchFromSearchAPI() {
+    const query = document.getElementById("searchInput").value.trim();
+    const minPrice = document.getElementById("minPrice").value;
+    const maxPrice = document.getElementById("maxPrice").value;
+
+    const baseParams = new URLSearchParams();
+    if (selectedType === "support") baseParams.append("is_for_support", "1");
+    else if (selectedType === "buy") baseParams.append("is_for_sale", "1");
+    if (minPrice) baseParams.append("min_price", minPrice);
+    if (maxPrice) baseParams.append("max_price", maxPrice);
+    if (selectedOrder) baseParams.append("order", selectedOrder);
+
+    const queryParams = new URLSearchParams(baseParams.toString());
+    const categoryParams = new URLSearchParams(baseParams.toString());
+
+    if (query) {
+      queryParams.append("query", query);
+      categoryParams.append("category", query);
+    }
+
+    fetch(`/api/product/search?${queryParams.toString()}`)
+      .then((res) => res.json())
+      .then((queryResults) => {
+        return fetch(`/api/product/search?${categoryParams.toString()}`)
+          .then((res) => res.json())
+          .then((categoryResults) => {
+            const allResults = [...queryResults];
+            categoryResults.forEach((catProduct) => {
+              if (
+                !allResults.some(
+                  (p) => p.product_id === catProduct.product_id
+                )
+              ) {
+                allResults.push(catProduct);
+              }
+            });
+            renderProducts(allResults);
+          });
+      })
+      .catch((error) => console.error("❌ Error in dual-search:", error));
+  }
+
+  function renderProducts(products) {
+    const container = document.querySelector(".iso-box-wrapper");
+    container.innerHTML = "";
+
+    if (!Array.isArray(products)) {
+      console.error("🚨 Data is not a matrix:", products);
+      return;
+    }
+
+    if (products.length === 0) {
+      container.innerHTML = `<p style="text-align:center; font-size:18px;">🚫 No results</p>`;
+      return;
+    }
+
+    console.log("📦 Display products:", products);
+
+    products.forEach((product) => {
+      console.log("🧩 Product:", product);
+
+      const box = document.createElement("div");
+      box.className = "iso-box col-md-4 col-sm-6";
+
+      box.innerHTML = `
+      <div class="portfolio-thumb">
+        <img src="${product.image_url || "images/default.jpg"
+        }" class="img-responsive" alt="Product Image">
+        <div class="portfolio-overlay">
+          <div class="portfolio-item">
+            <a href="product.html?product_id=${product.product_id
+        }"><i class="fa fa-link"></i></a>
+            <h2>${product.title}</h2>
+          </div>
+        </div>
+      </div>
+    `;
+      container.appendChild(box);
+    });
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    fetchFromProductAPI();
+
+    document.getElementById("searchBtn").addEventListener("click", () => {
+      fetchFromSearchAPI();
+    });
+
+    document
+      .getElementById("searchInput")
+      .addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          fetchFromSearchAPI();
+        }
+      });
+
+    const searchInput = document.getElementById("searchInput");
+    const clearBtn = document.getElementById("clearSearchBtn");
+
+    searchInput.addEventListener("input", () => {
+      if (searchInput.value.trim() !== "") {
+        clearBtn.style.display = "inline";
+      } else {
+        clearBtn.style.display = "none";
+        fetchFromProductAPI();
+      }
+    });
+
+    clearBtn.addEventListener("click", () => {
+      searchInput.value = "";
+      document.getElementById("minPrice").value = "";
+      document.getElementById("maxPrice").value = "";
+      clearBtn.style.display = "none";
+      fetchFromProductAPI();
+    });
+
+    // عند تحميل الصفحة أخفي مدخلات السعر
+    togglePriceInputs(selectedType);
+  });
+
+  function handleLogout() {
+    const token = localStorage.getItem("token");
+    if (!token) return (window.location.href = "/");
+
+    fetch("/api/auth/logout", {
+      method: "POST",
+      headers: {
+        Authorization: token,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("🟢", data.message);
+        localStorage.removeItem("token");
+        window.location.href = "/";
+      })
+      .catch((err) => {
+        console.error("❌ Error logging out:", err);
+        alert("❌ Failed to logout. Try again.");
+      });
+  }
+</script>
+
+</html>

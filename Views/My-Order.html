@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>My Orders - Support or Buy</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/ionicons.min.css">
+  <link rel="stylesheet" href="css/animate.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
+
+  <style>
+    body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--text-dark);
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #050606 0%, #fbf9f6 150%);
+  min-height: 100vh;
+
+}
+
+
+    .order-container {
+      max-width: 900px;
+      margin: 80px auto;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .order-tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+    }
+
+    .order-tab {
+      padding: 10px 20px;
+      margin: 0 10px;
+      cursor: pointer;
+      font-size: 18px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .order-tab.active {
+      background: #111;
+      color: white;
+    }
+
+    .order-section {
+      display: none;
+    }
+
+    .order-section.active {
+      display: block;
+    }
+
+    .order-item {
+      display: flex;
+      gap: 15px;
+      padding: 15px;
+      border-left: 5px solid #111;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      background: #f9f9f9;
+    }
+
+    .order-item.pending {
+      border-left-color: #d17b00;
+    }
+
+    .order-item.processing {
+      border-left-color: #166bba;
+    }
+
+    .order-item.delivered {
+      border-left-color: #2f7d2f;
+    }
+
+    .order-item.shipped {
+      border-left-color: #666;
+    }
+
+
+    .order-item img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .order-info {
+      flex: 1;
+    }
+
+    .order-actions {
+      align-self: center;
+    }
+
+    .order-actions button {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .order-actions button:hover {
+      opacity: 0.9;
+    }
+
+    #incoming-orders-filter {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    #incoming-orders-filter button {
+      margin: 5px;
+      padding: 6px 12px;
+      border: none;
+      background: #bbb;
+      color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    #incoming-orders-filter button:hover,
+    #incoming-orders-filter button.active {
+      background: #333;
+    }
+
+    .order-filter {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .order-filter button {
+      margin: 5px;
+      padding: 6px 12px;
+      border: none;
+      background: #bbb;
+      color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .order-filter button:hover,
+    .order-filter button.active {
+      background: #333;
+    }
+
+    .list-menu.reveal-modal {
+      background-color: rgba(0, 0, 0, 0.7) !important;
+      /* بدل الأسود الكامل */
+    }
+
+    .circle.dark.inline i {
+      font-size: 24px;
+      color: #111;
+    }
+
+    .nav-container {
+      background-color: #fff;
+    }
+
+    .list-menu.reveal-modal {
+      background-color: rgba(0, 0, 0, 0.7) !important;
+      /* بدل الأسود الكامل */
+    }
+
+    .order-tab {
+      background: var(--secondary-color);
+      color: var(--primary-color);
+    }
+
+    .order-tab.active {
+      background: var(--primary-color) !important;
+      color: var(--secondary-color) !important;
+      border: 2px solid var(--secondary-color);
+    }
+
+    #incoming-orders-filter button.active,
+    #my-orders-filter button.active {
+      background: var(--primary-color) !important;
+      color: var(--secondary-color) !important;
+      border: 2px solid var(--secondary-color);
+    }
+
+    .order-tab {
+      background: var(--secondary-color);
+      color: var(--primary-color) !important;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .order-tab:hover {
+      background: transparent !important;
+      color: var(--secondary-color) !important;
+      border: 2px solid var(--secondary-color);
+    }
+
+    .order-tab.active {
+      background: var(--primary-color) !important;
+      color: var(--secondary-color) !important;
+      border: 2px solid var(--secondary-color);
+    }
+  </style>
+
+  <style>
+    :root {
+      --primary-color: #ffffff;
+      --secondary-color: #000000;
+      --gray: #777777;
+      --light-gray: #cccccc;
+      --dark-gray: #333333;
+    }
+
+    body,
+    html {
+      background-color: var(--primary-color) !important;
+      color: var(--secondary-color) !important;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    a,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    span,
+    div {
+      color: var(--secondary-color) !important;
+    }
+
+    input,
+    textarea,
+    select,
+    button {
+      background-color: var(--light-gray) !important;
+      color: var(--secondary-color) !important;
+      border: 1px solid var(--gray) !important;
+    }
+
+    .btn,
+    .login-btn,
+    .order-actions button,
+    #incoming-orders-filter button,
+    #my-orders-filter button {
+      background: var(--secondary-color) !important;
+      color: var(--primary-color) !important;
+      padding: 12px 28px;
+      border: 2px solid transparent;
+      border-radius: 25px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+    }
+
+    .btn:hover,
+    .login-btn:hover,
+    .order-actions button:hover,
+    #incoming-orders-filter button:hover,
+    #my-orders-filter button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      border-color: var(--secondary-color);
+      background: transparent !important;
+      color: var(--secondary-color) !important;
+    }
+
+    .intro-inner ul#nav-menu li a {
+      color: white !important;
+      text-decoration: none;
+    }
+
+    .intro-inner ul#nav-menu li a:hover {
+      text-decoration: underline;
+      /* أو أي تأثير حاب */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="nav-container">
+    <nav class="nav-inner transparent">
+
+      <div class="navbar">
+        <div class="container">
+          <div class="row">
+
+            <div class="brand">
+              <a href="homepage.html">Support or buy</a>
+            </div>
+
+            <div class="navicon">
+              <div class="menu-container">
+
+                <div class="circle dark inline">
+                  <i class="icon ion-navicon"></i>
+                </div>
+
+                <div class="list-menu">
+                  <i class="icon ion-close-round close-iframe"></i>
+                  <div class="intro-inner">
+                    <ul id="nav-menu">
+                      <li><a href="homepage.html">Home</a></li>
+                      <li><a href="profile.html">Profile</a></li>
+                      <li><a href="My-Order.html">My Order</a></li>
+                      <li><a href="Notification.html">Notification</a></li>
+                      <li><a href="My-Product.html">My Product</a></li>
+                      <li><a href="#" onclick="handleLogout()">Logout</a></li>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </nav>
+  </div>
+  <div class="container">
+    <div class="order-container">
+      <div class="order-tabs">
+        <div class="order-tab active" data-tab="my-orders">My Orders</div>
+        <div class="order-tab" data-tab="incoming-orders">Incoming Orders</div>
+      </div>
+
+      <div id="incoming-orders-filter" style="display:none;">
+        <button onclick="filterIncoming('all')">All</button>
+        <button onclick="filterIncoming('pending')">Pending</button>
+        <button onclick="filterIncoming('processing')">Processing</button>
+        <button onclick="filterIncoming('delivered')">Delivered</button>
+        <button onclick="filterIncoming('shipped')">Shipped</button>
+      </div>
+      <div id="my-orders-filter" class="order-filter">
+        <button onclick="filterMyOrders('all')">All</button>
+        <button onclick="filterMyOrders('pending')">Pending</button>
+        <button onclick="filterMyOrders('processing')">Processing</button>
+        <button onclick="filterMyOrders('delivered')">Delivered</button>
+        <button onclick="filterMyOrders('shipped')">Shipped</button>
+      </div>
+
+      <div id="my-orders" class="order-section active"></div>
+      <div id="incoming-orders" class="order-section"></div>
+    </div>
+  </div>
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/isotope.js"></script>
+  <script src="js/imagesloaded.min.js"></script>
+  <script src="js/wow.min.js"></script>
+  <script src="js/custom.js"></script>
+  <script src="js/jquery.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      $('.navicon .circle').click(function () {
+        $('.list-menu').addClass('reveal-modal');
+      });
+
+      $('.close-iframe').click(function () {
+        $('.list-menu').removeClass('reveal-modal');
+      });
+    });
+  </script>
+  <script>
+    let allIncomingOrders = [];
+    let currentIncomingStatusFilter = 'all';
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll(".order-tab").forEach(tab => {
+        tab.addEventListener("click", () => {
+          document.querySelectorAll(".order-tab").forEach(t => t.classList.remove("active"));
+          tab.classList.add("active");
+
+          document.querySelectorAll(".order-section").forEach(s => s.classList.remove("active"));
+          document.getElementById(tab.dataset.tab).classList.add("active");
+
+          document.getElementById("incoming-orders-filter").style.display = (tab.dataset.tab === "incoming-orders") ? "block" : "none";
+          document.getElementById("my-orders-filter").style.display = (tab.dataset.tab === "my-orders") ? "block" : "none";
+        });
+      });
+
+      loadOrders();
+    });
+    let allMyOrders = [];
+    let currentMyStatusFilter = 'all';
+    function filterMyOrders(status) {
+      currentMyStatusFilter = status;
+      document.querySelectorAll("#my-orders-filter button").forEach(btn => btn.classList.remove("active"));
+      const button = Array.from(document.querySelectorAll("#my-orders-filter button"))
+        .find(btn => btn.textContent.toLowerCase() === status);
+      if (button) button.classList.add("active");
+
+      const filtered = status === 'all' ? allMyOrders : allMyOrders.filter(o => o.status === status);
+      renderOrderSection("my-orders", filtered, true);
+    }
+
+    async function loadOrders() {
+      const token = localStorage.getItem("token");
+
+      const headers = { "Authorization": token };
+      const myOrders = await fetch("/api/orders/my", { headers }).then(res => res.json());
+      const incomingOrders = await fetch("/api/orders/incoming", { headers }).then(res => res.json());
+
+      allIncomingOrders = incomingOrders.orders;
+
+      allMyOrders = myOrders.orders;
+      filterMyOrders(currentMyStatusFilter);
+      filterIncoming(currentIncomingStatusFilter);
+    }
+
+    function filterIncoming(status) {
+      currentIncomingStatusFilter = status;
+      document.querySelectorAll("#incoming-orders-filter button").forEach(btn => btn.classList.remove("active"));
+      const button = Array.from(document.querySelectorAll("#incoming-orders-filter button"))
+        .find(btn => btn.textContent.toLowerCase() === status);
+      if (button) button.classList.add("active");
+
+      const filtered = status === 'all' ? allIncomingOrders : allIncomingOrders.filter(o => o.status === status);
+      renderOrderSection("incoming-orders", filtered, false);
+    }
+
+    function renderOrderSection(id, orders, isMine) {
+      const container = document.getElementById(id);
+      if (!orders || orders.length === 0) {
+        container.innerHTML = `<p class="text-center text-muted">No orders found</p>`;
+        return;
+      }
+
+      container.innerHTML = orders.map(order => `
+      <div class="order-item ${order.status}">
+        <img src="${order.image_url ? '/' + order.image_url : 'images/default.jpg'}" alt="product">
+        <div class="order-info">
+          <div><strong>${order.product_title}</strong></div>
+          <div>Total: ${order.total_amount} JD</div>
+          <div>Quantity: ${order.quantity}</div>
+          <div>Date: ${new Date(order.created_at).toLocaleString()}</div>
+          <div>Status: ${order.status}</div>
+        </div>
+        <div class="order-actions">
+          ${generateActionButton(order, isMine)}
+        </div>
+      </div>
+    `).join("");
+    }
+
+    function generateActionButton(order, isMine) {
+      if (isMine) {
+        return order.status === 'pending'
+          ? `<button onclick="cancelOrder(${order.order_id})">Cancel</button>`
+          : '';
+      } else {
+        if (order.status === 'pending') return `<button onclick="updateOrder(${order.order_id}, 'processing')">Processing</button>`;
+        if (order.status === 'processing') return `<button onclick="updateOrder(${order.order_id}, 'delivered')">Delivered</button>`;
+        if (order.status === 'delivered') return `<button onclick="updateOrder(${order.order_id}, 'shipped')">Shipped</button>`;
+        return '';
+      }
+    }
+
+    async function cancelOrder(orderId) {
+      const token = localStorage.getItem("token");
+      const res = await fetch(`/api/orders/${orderId}`, {
+        method: "DELETE",
+        headers: { "Authorization": token }
+      });
+      if (res.ok) loadOrders();
+    }
+
+    async function updateOrder(orderId, status) {
+      const token = localStorage.getItem("token");
+      const res = await fetch(`/api/orders/${orderId}/status`, {
+        method: "PUT",
+        headers: {
+          "Authorization": token,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ status })
+      });
+      if (res.ok) loadOrders();
+    }
+
+    function handleLogout() {
+      const token = localStorage.getItem("token");
+      if (!token) return window.location.href = "/";
+
+      fetch("/api/auth/logout", {
+        method: "POST",
+        headers: {
+          "Authorization": token
+        }
+      })
+        .then(res => res.json())
+        .then(data => {
+          console.log("🟢", data.message);
+          localStorage.removeItem("token");
+          window.location.href = "/";
+        })
+        .catch(err => {
+          console.error("❌ Error logging out:", err);
+          alert("❌ Failed to logout. Try again.");
+        });
+    }
+
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    async function openReviewPopup(productId, orderId) {
+      const token = localStorage.getItem("token");
+
+      // Check if already reviewed
+      const check = await fetch(`/api/review/check?order_id=${orderId}`, {
+        headers: { Authorization: token }
+      });
+
+      if (check.status === 200) {
+        const data = await check.json();
+        if (data.reviewed) {
+          return Swal.fire({
+            icon: "info",
+            title: "You already submitted a review for this order.",
+            toast: true,
+            timer: 2000,
+            position: "top-end",
+            showConfirmButton: false
+          });
+        }
+      }
+
+      Swal.fire({
+        title: "Rate this product",
+        html: `
+<label class="mb-2 d-block">Rating:</label>
+<div id="star-rating" style="font-size: 1.8rem; text-align: center;">
+  <i class="fa fa-star" data-value="1"></i>
+  <i class="fa fa-star" data-value="2"></i>
+  <i class="fa fa-star" data-value="3"></i>
+  <i class="fa fa-star" data-value="4"></i>
+  <i class="fa fa-star" data-value="5"></i>
+</div>
+<input type="hidden" id="rating" value="5">
+<input type="text" id="comment" class="swal2-input mt-3" placeholder="Optional comment">
+<style>
+  #star-rating .fa-star {
+    color: lightgray;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  #star-rating .fa-star.selected {
+    color: gold;
+  }
+</style>
+
+  `,
+        showCancelButton: true,
+        confirmButtonText: "Submit",
+        didOpen: () => {
+          const stars = document.querySelectorAll("#star-rating .fa-star");
+          const ratingInput = document.getElementById("rating");
+
+          stars.forEach(star => {
+            star.addEventListener("click", () => {
+              const value = parseInt(star.getAttribute("data-value"));
+              ratingInput.value = value;
+
+              stars.forEach((s, index) => {
+                if (index < value) {
+                  s.classList.add("selected");
+                } else {
+                  s.classList.remove("selected");
+                }
+              });
+            });
+          });
+
+          // إظهار القيمة الافتراضية
+          const defaultValue = parseInt(ratingInput.value);
+          stars.forEach((s, index) => {
+            if (index < defaultValue) {
+              s.classList.add("selected");
+            }
+          });
+        }
+        ,
+        preConfirm: async () => {
+          const rating = document.getElementById("rating").value;
+          const comment = document.getElementById("comment").value;
+
+          try {
+            const res = await fetch("/api/review", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: token
+              },
+              body: JSON.stringify({ product_id: productId, order_id: orderId, rating, comment })
+            });
+
+            const result = await res.json();
+
+            if (!res.ok) throw new Error(result.error);
+
+            Swal.fire({
+              icon: "success",
+              title: "Thank you for your review!",
+              toast: true,
+              timer: 2000,
+              position: "top-end",
+              showConfirmButton: false
+            });
+          } catch (err) {
+            Swal.fire({
+              icon: "error",
+              title: err.message,
+              toast: true,
+              timer: 2000,
+              position: "top-end",
+              showConfirmButton: false
+            });
+          }
+        }
+      });
+
+    }
+
+    // تعديل دالة generateActionButton لإضافة زر review عند shipped
+    const originalGenerateActionButton = generateActionButton;
+    generateActionButton = function (order, isMine) {
+      if (isMine) {
+        if (order.status === 'pending') {
+          return `<button onclick="cancelOrder(${order.order_id})">Cancel</button>`;
+        } else if (order.status === 'shipped') {
+          return `<button onclick="openReviewPopup(${order.product_id}, ${order.order_id})">⭐ Add Review</button>`;
+        } else {
+          return '';
+        }
+      } else {
+        if (order.status === 'pending') return `<button onclick="updateOrder(${order.order_id}, 'processing')">Processing</button>`;
+        if (order.status === 'processing') return `<button onclick="updateOrder(${order.order_id}, 'delivered')">Delivered</button>`;
+        if (order.status === 'delivered') return `<button onclick="updateOrder(${order.order_id}, 'shipped')">Shipped</button>`;
+        return '';
+      }
+    }
+  </script>
+
+</body>
+
+</html>

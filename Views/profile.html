@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Profile - Support or Buy</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/ionicons.min.css" />
+    <link rel="stylesheet" href="css/animate.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <style>
+      html {
+        filter: grayscale(100%);
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: var(--text-dark);
+        overflow-x: hidden;
+        background: linear-gradient(135deg, #050606 0%, #fbf9f6 150%);
+        min-height: 100vh;
+      }
+
+      .profile-section {
+        max-width: 40%;
+        max-height: 70%;
+        margin: 80px auto;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .profile-section img {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 15px;
+      }
+
+      .profile-section h2 {
+        font-weight: 600;
+        color: #333;
+      }
+
+      .profile-section p {
+        margin-bottom: 8px;
+        color: #777;
+      }
+
+      .profile-section .btn-edit {
+        margin-top: 20px;
+      }
+
+      .modal .form-group label {
+        font-weight: 500;
+      }
+
+      .nav-container {
+        background-color: #fff;
+      }
+
+      .list-menu.reveal-modal {
+        background-color: rgba(0, 0, 0, 0.7) !important;
+      }
+    </style>
+
+    <style>
+      :root {
+        --primary-color: #ffffff;
+        --secondary-color: #000000;
+        --gray: #777777;
+        --light-gray: #cccccc;
+        --dark-gray: #333333;
+      }
+
+      html {
+        filter: none;
+      }
+
+      body,
+      html {
+        background-color: var(--primary-color) !important;
+        color: var(--secondary-color) !important;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      a,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p,
+      span,
+      div,
+      label {
+        color: var(--secondary-color) !important;
+      }
+
+      input,
+      textarea,
+      select,
+      button {
+        background-color: var(--light-gray) !important;
+        color: var(--secondary-color) !important;
+        border: 1px solid var(--gray) !important;
+      }
+
+      .btn,
+      .btn-edit {
+        background: var(--secondary-color) !important;
+        color: var(--primary-color) !important;
+        padding: 12px 28px;
+        border: 2px solid transparent;
+        border-radius: 25px;
+        font-weight: 700;
+        text-decoration: none;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+      }
+
+      .btn:hover,
+      .btn-edit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        border-color: var(--secondary-color);
+        background: transparent !important;
+        color: var(--secondary-color) !important;
+      }
+
+      .modal-content {
+        background-color: var(--primary-color);
+        color: var(--secondary-color);
+      }
+
+      .alert {
+        border: 1px solid var(--secondary-color);
+      }
+
+      .intro-inner ul#nav-menu li a {
+        color: white !important;
+        text-decoration: none;
+      }
+
+      .intro-inner ul#nav-menu li a:hover {
+        text-decoration: underline;
+        /* أو أي تأثير حاب */
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="nav-container">
+      <nav class="nav-inner transparent">
+        <div class="navbar">
+          <div class="container">
+            <div class="row">
+              <div class="brand">
+                <a href="homepage.html">Support or buy</a>
+              </div>
+
+              <div class="navicon">
+                <div class="menu-container">
+                  <div class="circle dark inline">
+                    <i class="icon ion-navicon"></i>
+                  </div>
+
+                  <div class="list-menu">
+                    <i class="icon ion-close-round close-iframe"></i>
+                    <div class="intro-inner">
+                      <ul id="nav-menu">
+                        <li><a href="homepage.html">Home</a></li>
+                        <li><a href="profile.html">Profile</a></li>
+                        <li><a href="My-Order.html">My Order</a></li>
+                        <li><a href="Notification.html">Notification</a></li>
+                        <li><a href="My-Product.html">My Product</a></li>
+                        <li><a href="#" onclick="handleLogout()">Logout</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="container">
+      <div class="profile-section">
+        <img
+          id="profilePicture"
+          src="images/default.jpg"
+          alt="Profile Picture"
+        />
+        <h2 id="fullName">Full Name</h2>
+        <p>
+          <i class="fa fa-envelope"></i>
+          <span id="email">user@example.com</span>
+        </p>
+        <p><i class="fa fa-phone"></i> <span id="phone">--</span></p>
+        <p><i class="fa fa-map-marker"></i> <span id="address">--</span></p>
+        <p><i class="fa fa-info-circle"></i> <span id="bio">--</span></p>
+        <button
+          class="btn btn-success btn-edit"
+          data-toggle="modal"
+          data-target="#editModal"
+        >
+          <i class="fa fa-pencil"></i> Edit Profile
+        </button>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="editModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="editModalLabel"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <form id="editForm">
+            <div class="modal-header">
+              <h4 class="modal-title">Edit Profile</h4>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label>First Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editFirstName"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label>Last Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editLastName"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label>Phone</label>
+                <input type="text" class="form-control" id="editPhone" />
+              </div>
+              <div class="form-group">
+                <label>Address</label>
+                <input type="text" class="form-control" id="editAddress" />
+              </div>
+              <div class="form-group">
+                <label>Bio</label>
+                <textarea class="form-control" id="editBio" rows="3"></textarea>
+              </div>
+              <div class="form-group">
+                <label>New Picture</label>
+                <input type="file" class="form-control" id="editPicture" />
+              </div>
+              <div class="alert alert-danger d-none" id="editError"></div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="submit" class="btn btn-success">
+                Save Changes
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/isotope.js"></script>
+    <script src="js/imagesloaded.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/jquery.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        $(".navicon .circle").click(function () {
+          $(".list-menu").addClass("reveal-modal");
+        });
+
+        $(".close-iframe").click(function () {
+          $(".list-menu").removeClass("reveal-modal");
+        });
+      });
+    </script>
+  </body>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const token = localStorage.getItem("token");
+      const headers = { Authorization: token };
+
+      try {
+        const res = await fetch("/api/user/profile", { headers });
+        const user = await res.json();
+
+        document.getElementById(
+          "fullName"
+        ).textContent = `${user.first_name} ${user.last_name}`;
+        document.getElementById("email").textContent = user.email;
+        document.getElementById("phone").textContent = user.phone || "--";
+        document.getElementById("address").textContent = user.address || "--";
+        document.getElementById("bio").textContent = user.bio || "--";
+        document.getElementById("profilePicture").src = user.profile_picture
+          ? "/" + user.profile_picture
+          : "images/default.jpg";
+
+        // Pre-fill modal fields
+        document.getElementById("editFirstName").value = user.first_name || "";
+        document.getElementById("editLastName").value = user.last_name || "";
+        document.getElementById("editPhone").value = user.phone || "";
+        document.getElementById("editAddress").value = user.address || "";
+        document.getElementById("editBio").value = user.bio || "";
+      } catch (err) {
+        alert("Failed to load profile data");
+      }
+
+      const safe = (id) => {
+        const el = document.getElementById(id);
+        return el ? el.value || "" : "";
+      };
+
+      document
+        .getElementById("editForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const formData = new FormData();
+          formData.append("first_name", safe("editFirstName"));
+          formData.append("last_name", safe("editLastName"));
+          formData.append("phone", safe("editPhone"));
+          formData.append("address", safe("editAddress"));
+          formData.append("bio", safe("editBio"));
+
+          const file = document.getElementById("editPicture").files[0];
+          if (file) {
+            formData.append("profile_picture", file);
+          }
+          // لا ترسل profile_picture إذا ما في ملف
+
+          try {
+            const response = await fetch("/api/user/profile", {
+              method: "PUT",
+              headers: {
+                Authorization: token,
+              },
+              body: formData,
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) throw new Error(result.error || "Update failed");
+
+            location.reload();
+          } catch (error) {
+            const errorDiv = document.getElementById("editError");
+            errorDiv.textContent = error.message;
+            errorDiv.classList.remove("d-none");
+          }
+        });
+    });
+
+    function handleLogout() {
+      const token = localStorage.getItem("token");
+      if (!token) return (window.location.href = "/");
+
+      fetch("/api/auth/logout", {
+        method: "POST",
+        headers: {
+          Authorization: token,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("🟢", data.message);
+          localStorage.removeItem("token");
+          window.location.href = "/";
+        })
+        .catch((err) => {
+          console.error("❌ Error logging out:", err);
+          alert("❌ Failed to logout. Try again.");
+        });
+    }
+  </script>
+</html>
